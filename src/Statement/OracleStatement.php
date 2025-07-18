@@ -212,7 +212,7 @@ class OracleStatement extends Statement
      * @return bool
      * @throws StatementException
      */
-    public function _execute(array $params = null)
+    public function _execute(?array $params = null)
     {
         $connection = $this->_adapter->getConnection();
 

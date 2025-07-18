@@ -29,7 +29,7 @@ class AdapterException extends DbException
 {
     protected $_chainedException = null;
 
-    public function __construct($message = '', $code = 0, Exception $e = null)
+    public function __construct($message = '', $code = 0, ?Exception $e = null)
     {
         if ($e && (0 === $code)) {
             $code = $e->getCode();

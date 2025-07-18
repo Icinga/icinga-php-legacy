@@ -170,7 +170,7 @@ class MysqliStatement extends Statement
      * @return bool
      * @throws StatementExceptionMysqli
      */
-    public function _execute(array $params = null)
+    public function _execute(?array $params = null)
     {
         if (!$this->_stmt) {
             return false;

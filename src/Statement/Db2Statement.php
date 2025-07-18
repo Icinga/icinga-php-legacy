@@ -177,7 +177,7 @@ class Db2Statement extends Statement
      * @return bool
      * @throws StatementExceptionDb2
      */
-    public function _execute(array $params = null)
+    public function _execute(?array $params = null)
     {
         if (!$this->_stmt) {
             return false;

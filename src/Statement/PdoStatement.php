@@ -209,7 +209,7 @@ class PdoStatement extends Statement implements IteratorAggregate
      * @return bool
      * @throws StatementException
      */
-    public function _execute(array $params = null)
+    public function _execute(?array $params = null)
     {
         try {
             if ($params !== null) {

@@ -35,7 +35,7 @@ class AdapterExceptionDb2 extends AdapterException
     protected $code = '00000';
     protected $message = 'unknown exception';
 
-    public function __construct($message = 'unknown exception', $code = '00000', Exception $e = null)
+    public function __construct($message = 'unknown exception', $code = '00000', ?Exception $e = null)
     {
         parent::__construct($message, $code, $e);
     }
