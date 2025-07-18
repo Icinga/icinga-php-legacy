@@ -179,8 +179,20 @@ trait Storable
     {
         $this->assertPropertyExists($property);
 
-        if ($value === $this->get($property)) {
+        $currentProperty = $this->get($property);
+
+        if ($value === $currentProperty) {
             return false;
+        }
+
+        if ((is_int($value) || (is_string($value) && ctype_digit($value)))
+            && (string) $value === (string) $currentProperty
+        ) {
+            return false;
+        }
+
+        if ($value === '' && $currentProperty === null) {
+            // return false; // might help with forms, but this is not the right place
         }
 
         $this->properties[$property] = $value;
