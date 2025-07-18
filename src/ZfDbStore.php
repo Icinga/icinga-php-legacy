@@ -162,7 +162,7 @@ class ZfDbStore extends BaseStore
                 if (array_key_exists($column, $key)) {
                     $select->where("$column = ?", $key[$column]);
                 } else {
-                    throw new RuntimeException('Multicolumn key required, got no %s', $column);
+                    throw new RuntimeException(sprintf('Multicolumn key required, got no %s', $column));
                 }
             }
         }
