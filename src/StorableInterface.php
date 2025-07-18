@@ -16,7 +16,7 @@ interface StorableInterface
 
     public function get($property);
 
-    public function getProperties(array $properties = null);
+    public function getProperties(?array $properties = null);
 
     public function hasProperty($property);
 

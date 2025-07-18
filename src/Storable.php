@@ -129,7 +129,7 @@ trait Storable
      * @param array|null $properties
      * @return array
      */
-    public function getProperties(array $properties = null)
+    public function getProperties(?array $properties = null)
     {
         if ($properties === null) {
             $properties = array_keys($this->properties);
