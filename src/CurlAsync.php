@@ -139,6 +139,9 @@ class CurlAsync
         while (count($this->pending) > 0 && count($this->running) < $this->maxParallelRequests) {
             $next = array_shift($this->pending);
             $resourceIdx = $next[0];
+            if (! isset($this->curl[$resourceIdx])) {
+                continue;
+            }
             $this->running[$resourceIdx] = $next[1];
             $curl = $this->curl[$resourceIdx];
             // enqueued: curl_getinfo($curl, CURLINFO_EFFECTIVE_URL);
@@ -225,6 +228,9 @@ class CurlAsync
     {
         $curl = $completed['handle'];
         $resourceNum = (int) $curl; // Hint this is an object in PHP >= 8, a resource in older versions
+        if (! isset($this->running[$resourceNum])) {
+            return;
+        }
         $deferred = $this->running[$resourceNum];
         $request = $this->pendingRequests[$resourceNum];
         $options = $this->pendingOptions[$resourceNum];
@@ -244,7 +250,7 @@ class CurlAsync
             }
         } else {
             try {
-                $deferred->resolve($this->parseResponse($content, $removeProxyHeaders));
+                $response = $this->parseResponse($content, $removeProxyHeaders);
             } catch (\Exception $e) {
                 $response = null;
             }
