@@ -11,6 +11,7 @@ use React\EventLoop\TimerInterface;
 use React\Promise\Deferred;
 use RuntimeException;
 use Throwable;
+
 use function array_shift;
 use function count;
 use function curl_close;
@@ -198,7 +199,7 @@ class CurlAsync
             // Hint: while ($status === CURLM_CALL_MULTI_PERFORM) ?
 
             if ($status !== CURLM_OK) {
-                throw new RuntimeException(curl_multi_strerror($handle));
+                throw new RuntimeException(curl_multi_strerror($status));
             }
             if ($active) {
                 $fds = curl_multi_select($handle, 0.01);
