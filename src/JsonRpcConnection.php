@@ -16,6 +16,7 @@ use React\Promise\Promise;
 use React\Stream\DuplexStreamInterface;
 use React\Stream\Util;
 use RuntimeException;
+use Throwable;
 
 use function mt_rand;
 use function React\Promise\reject;
@@ -45,7 +46,7 @@ class JsonRpcConnection implements LoggerAwareInterface
         $this->connection->on('data', function ($data) {
             try {
                 $this->handlePacket(Packet::decode($data));
-            } catch (\Exception $error) {
+            } catch (Throwable $error) {
                 $this->logger->error($error->getMessage());
                 $this->unknownErrorCount++;
                 if ($this->unknownErrorCount === 3) {
@@ -124,7 +125,7 @@ class JsonRpcConnection implements LoggerAwareInterface
                 $this->sendResultForRequest($request, $result);
             }, function ($error) use ($request) {
                 $response = Response::forRequest($request);
-                if ($error instanceof Exception || $error instanceof \Throwable) {
+                if ($error instanceof Exception || $error instanceof Throwable) {
                     $response->setError(Error::forException($error));
                 } else {
                     $response->setError(new Error(Error::INTERNAL_ERROR, $error));
