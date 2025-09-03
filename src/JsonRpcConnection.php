@@ -229,6 +229,14 @@ class JsonRpcConnection implements LoggerAwareInterface
         return $this;
     }
 
+    /**
+     * @return ?JsonRpcHandler
+     */
+    public function getHandler()
+    {
+        return $this->handler;
+    }
+
     protected function rejectAllPendingRequests($message)
     {
         foreach ($this->pending as $pending) {
