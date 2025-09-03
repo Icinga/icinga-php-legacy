@@ -2,8 +2,8 @@
 
 namespace gipfl\Protocol\JsonRpc;
 
-use Exception;
 use JsonSerializable;
+use Throwable;
 use TypeError;
 
 class Error implements JsonSerializable
@@ -72,7 +72,7 @@ class Error implements JsonSerializable
         $this->data    = $data;
     }
 
-    public static function forException(Exception $exception)
+    public static function forException(Throwable $exception)
     {
         $code = $exception->getCode();
         if (! static::isCustomErrorCode($code)
