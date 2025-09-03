@@ -11,6 +11,7 @@ use gipfl\Protocol\JsonRpc\Notification;
 use gipfl\Protocol\JsonRpc\Request;
 use RuntimeException;
 use TypeError;
+
 use function call_user_func_array;
 use function method_exists;
 use function preg_split;
@@ -53,6 +54,21 @@ class NamespacedPacketHandler implements JsonRpcHandler
         } catch (TypeError $error) {
             return Error::forTypeError($error);
         }
+    }
+
+    public function listRegisteredNamespaces(): array
+    {
+        return array_keys($this->handlers);
+    }
+
+    public function getRegisteredNamespaceClasses(): array
+    {
+        $result = [];
+        foreach ($this->handlers as $key => $handler) {
+            $result[$key] = get_class($handler);
+        }
+
+        return $result;
     }
 
     /**
