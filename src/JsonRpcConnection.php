@@ -166,7 +166,9 @@ class JsonRpcConnection implements LoggerAwareInterface
         try {
             $this->connection->write($request->toString());
         } catch (JsonEncodeException $e) {
-            return reject($e->getMessage());
+            return reject($e);
+        } catch (Throwable $e) {
+            return reject(new RuntimeException($e->getMessage()));
         }
         $deferred = new Deferred(function () use ($id) {
             unset($this->pending[$id]);
