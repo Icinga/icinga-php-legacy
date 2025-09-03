@@ -57,7 +57,7 @@ class CurlAsync
     protected $curl = [];
 
     /** @var int */
-    protected $maxParallelRequests = 30;
+    protected $maxParallelRequests = 120;
 
     /** @var LoopInterface */
     protected $loop;
