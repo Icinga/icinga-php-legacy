@@ -334,7 +334,9 @@ class CurlAsync
         unset($this->pendingRequests[$ref]);
         unset($this->pendingOptions[$ref]);
         unset($this->running[$ref]);
-        curl_close($this->curl[$ref]);
+        if (isset($this->curl[$ref])) {
+            curl_close($this->curl[$ref]);
+        }
         unset($this->curl[$ref]);
     }
 
