@@ -132,7 +132,7 @@ class JsonRpcConnection implements LoggerAwareInterface
                 }
                 // TODO: Double-check, this used to loop
                 $this->connection->write($response->toString());
-            })->done();
+            });
         } else {
             $response = Response::forRequest($request);
             $response->setResult($result);
