@@ -203,7 +203,8 @@ class NamespacedPacketHandler implements JsonRpcHandler
                 }
             } else {
                 // TODO: isRequired? Set null
-                throw new Exception("Missing parameter for $method: $name");
+                $type = $parameter->getType();
+                throw new Exception("Missing parameter for $method: $name ($type)");
             }
         }
 
