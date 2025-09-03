@@ -85,7 +85,7 @@ class Error implements JsonSerializable
         } else {
             $data = $exception->getTraceAsString();
         }
-        if (function_exists('iconv')) {
+        if ($data !== null && function_exists('iconv')) {
             $data = iconv('UTF-8', 'UTF-8//IGNORE', $data);
         }
 
