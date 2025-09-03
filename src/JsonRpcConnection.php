@@ -35,7 +35,7 @@ class JsonRpcConnection implements LoggerAwareInterface
 
     protected $unknownErrorCount = 0;
 
-    public function __construct(DuplexStreamInterface $connection, JsonRpcHandler $handler = null)
+    public function __construct(DuplexStreamInterface $connection, ?JsonRpcHandler $handler = null)
     {
         $this->setLogger(new NullLogger());
         $this->connection = $connection;
@@ -216,7 +216,7 @@ class JsonRpcConnection implements LoggerAwareInterface
      * @param PacketHandler $handler
      * @return $this
      */
-    public function setHandler(JsonRpcHandler $handler = null)
+    public function setHandler(?JsonRpcHandler $handler = null)
     {
         $this->handler = $handler;
         return $this;
