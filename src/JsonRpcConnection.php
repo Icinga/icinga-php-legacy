@@ -10,11 +10,13 @@ use InvalidArgumentException;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerAwareTrait;
 use Psr\Log\NullLogger;
+use React\EventLoop\Loop;
 use React\Promise\Deferred;
 use React\Promise\Promise;
 use React\Stream\DuplexStreamInterface;
 use React\Stream\Util;
 use RuntimeException;
+
 use function mt_rand;
 use function React\Promise\reject;
 use function React\Promise\resolve;
@@ -49,7 +51,9 @@ class JsonRpcConnection implements LoggerAwareInterface
                 if ($this->unknownErrorCount === 3) {
                     // e.g.: decoding errors
                     // TODO: should we really close? Or just send error responses for every Exception?
-                    $this->close();
+                    Loop::futureTick(function () {
+                        $this->close();
+                    });
                 }
                 $response = new Response();
                 $response->setError(Error::forException($error));
