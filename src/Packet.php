@@ -6,6 +6,7 @@ use gipfl\Json\JsonException;
 use gipfl\Json\JsonSerialization;
 use gipfl\Json\JsonString;
 use gipfl\Protocol\Exception\ProtocolError;
+
 use function property_exists;
 
 abstract class Packet implements JsonSerialization
@@ -106,10 +107,29 @@ abstract class Packet implements JsonSerialization
             return self::fromSerialization(JsonString::decode($string));
         } catch (JsonException $e) {
             throw new ProtocolError(sprintf(
-                'JSON decode failed: %s',
-                $e->getMessage()
+                'JSON decode failed: %s (%s)',
+                $e->getMessage(),
+                self::shorten(self::safeString($string), 360)
             ), Error::PARSE_ERROR);
         }
+    }
+
+    protected static function shorten($string, $length)
+    {
+        if (strlen($string) > $length) {
+            return substr($string, 0, $length) . '...';
+        }
+
+        return $string;
+    }
+
+    protected static function safeString($string)
+    {
+        if ($string !== null && function_exists('iconv')) {
+            return iconv('UTF-8', 'UTF-8//IGNORE', $string);
+        }
+
+        return $string;
     }
 
     public static function fromSerialization($any)
