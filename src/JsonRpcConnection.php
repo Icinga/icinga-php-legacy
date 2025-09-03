@@ -160,8 +160,8 @@ class JsonRpcConnection implements LoggerAwareInterface
                 "A request with id '$id' is already pending"
             );
         }
-        if (!$this->connection->isWritable()) {
-            return reject(new Exception('Cannot write to socket'));
+        if (!$this->connection || !$this->connection->isWritable()) {
+            return reject(new Exception('Cannot write to JSON-RPC socket'));
         }
         try {
             $this->connection->write($request->toString());
