@@ -17,6 +17,7 @@ class JsonException extends Exception
 
     public static function getJsonErrorMessage($code)
     {
+        $prefix = get_called_class() . ': ';
         $map = [
             JSON_ERROR_DEPTH          => 'The maximum stack depth has been exceeded',
             JSON_ERROR_CTRL_CHAR      => 'Control character error, possibly incorrectly encoded',
@@ -25,7 +26,7 @@ class JsonException extends Exception
             JSON_ERROR_UTF8           => 'Malformed UTF-8 characters, possibly incorrectly encoded'
         ];
         if (\array_key_exists($code, $map)) {
-            return $map[$code];
+            return $prefix . $map[$code];
         }
 
         if (PHP_VERSION_ID >= 50500) {
@@ -35,7 +36,7 @@ class JsonException extends Exception
                 JSON_ERROR_UNSUPPORTED_TYPE => 'A value of a type that cannot be encoded was given',
             ];
             if (\array_key_exists($code, $map)) {
-                return $map[$code];
+                return $prefix . $map[$code];
             }
         }
 
@@ -46,10 +47,10 @@ class JsonException extends Exception
             ];
 
             if (\array_key_exists($code, $map)) {
-                return $map[$code];
+                return $prefix . $map[$code];
             }
         }
 
-        return 'An error occured when parsing a JSON string';
+        return $prefix . 'JSON encoding/decoding error occured';
     }
 }
