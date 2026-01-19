@@ -1,0 +1,35 @@
+{
+  "name": "icinga/abandoned",
+  "type": "library",
+  "require": {
+    "php": ">=8.5"
+  },
+  "autoload": {
+    "psr-4": {
+      "gipfl\\Calendar\\": "gipfl/calendar/src",
+      "gipfl\\Cli\\": "gipfl/cli/src",
+      "gipfl\\Curl\\": "gipfl/curl/src",
+      "gipfl\\DataType\\": "gipfl/data-type/src",
+      "gipfl\\DbMigration\\": "gipfl/db-migration/src",
+      "gipfl\\Format\\": "gipfl/format/src",
+      "gipfl\\IcingaWeb2\\": "gipfl/icingaweb2/src",
+      "gipfl\\InfluxDb\\": "gipfl/influxdb/src",
+      "gipfl\\Json\\": "gipfl/json/src",
+      "gipfl\\LinuxHealth\\": "gipfl/linux-health/src",
+      "gipfl\\Log\\": "gipfl/log/src",
+      "gipfl\\OpenRpc\\": "gipfl/openrpc/src",
+      "gipfl\\Process\\": "gipfl/process/src",
+      "gipfl\\Protocol\\": "gipfl/protocol/src/",
+      "gipfl\\Protocol\\JsonRpc\\": "gipfl/protocol-jsonrpc/src/",
+      "gipfl\\Protocol\\NetString\\": "gipfl/protocol-netstring/src/",
+      "gipfl\\ReactUtils\\": "gipfl/react-utils/src",
+      "gipfl\\SimpleDaemon\\": "gipfl/simple-daemon/src",
+      "gipfl\\Socket\\": "gipfl/socket/src",
+      "gipfl\\SystemD\\": "gipfl/systemd/src",
+      "gipfl\\Translation\\": "gipfl/translation/src",
+      "gipfl\\Web\\": "gipfl/web/src",
+      "gipfl\\ZfDb\\": "gipfl/zfdb/src",
+      "gipfl\\ZfDbStore\\": "gipfl/zfdbstore/src"
+    }
+  }
+}
