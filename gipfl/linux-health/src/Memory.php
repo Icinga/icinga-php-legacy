@@ -33,7 +33,7 @@ class Memory
     public static function getPageSize()
     {
         if (self::$pageSize === null) {
-            $output = trim(`getconf PAGESIZE 2>&1`);
+            $output = trim(shell_exec('getconf PAGESIZE 2>&1'));
             if (strlen($output)) {
                 self::$pageSize = (int) $output;
             }
