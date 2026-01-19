@@ -131,7 +131,7 @@ class Profiler
      */
     public function setEnabled($enable)
     {
-        $this->_enabled = (boolean) $enable;
+        $this->_enabled = (bool) $enable;
 
         return $this;
     }
@@ -161,7 +161,7 @@ class Profiler
         if (null === $minimumSeconds) {
             $this->_filterElapsedSecs = null;
         } else {
-            $this->_filterElapsedSecs = (integer) $minimumSeconds;
+            $this->_filterElapsedSecs = (int) $minimumSeconds;
         }
 
         return $this;
