@@ -30,9 +30,9 @@ class TestCase extends BaseTestCase
             $errors[] = new \ErrorException($errstr, 0, $errno, $errfile, $errline);
 
             return false; // Always continue with normal error processing
-        }, E_ALL | E_STRICT);
+        });
 
-        \error_reporting(E_ALL | E_STRICT);
+        \error_reporting(E_ALL);
     }
 
     protected function throwEventualErrors(array $errors)
