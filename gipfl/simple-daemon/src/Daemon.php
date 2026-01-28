@@ -10,6 +10,7 @@ use Psr\Log\LoggerAwareTrait;
 use Psr\Log\NullLogger;
 use React\EventLoop\LoopInterface;
 use React\Promise\Deferred;
+
 use function React\Promise\resolve;
 use function React\Promise\Timer\timeout;
 use function sprintf;
@@ -82,7 +83,7 @@ class Daemon implements LoggerAwareInterface
     protected function stopTasks()
     {
         if (empty($this->daemonTasks)) {
-            return resolve();
+            return resolve(null);
         }
 
         $deferred = new Deferred();
@@ -92,7 +93,7 @@ class Daemon implements LoggerAwareInterface
                 if (empty($this->daemonTasks)) {
                     $this->tasksStarted = false;
                     $this->loop->futureTick(function () use ($deferred) {
-                        $deferred->resolve();
+                        $deferred->resolve(null);
                     });
                 }
             });
