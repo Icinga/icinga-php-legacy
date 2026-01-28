@@ -13,6 +13,7 @@ use React\Promise\Promise;
 use React\Stream\DuplexStreamInterface;
 use React\Stream\Util;
 use RuntimeException;
+
 use function call_user_func_array;
 use function is_object;
 use function mt_rand;
@@ -187,7 +188,7 @@ class Connection implements LoggerAwareInterface
         try {
             $this->connection->write($request->toString());
         } catch (JsonEncodeException $e) {
-            return reject($e->getMessage());
+            return reject($e);
         }
         $deferred = new Deferred();
         $this->pending[$id] = $deferred;
