@@ -126,7 +126,7 @@ class Connection implements LoggerAwareInterface
         } elseif ($result instanceof Promise) {
             $result->then(function ($result) use ($request) {
                 $this->sendResultForRequest($request, $result);
-            })->otherwise(function ($error) use ($request) {
+            })->catch(function ($error) use ($request) {
                 $response = Response::forRequest($request);
                 if ($error instanceof Exception) {
                     $response->setError(Error::forException($error));
