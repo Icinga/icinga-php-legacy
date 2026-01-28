@@ -2,7 +2,7 @@
   "name": "icinga/abandoned",
   "type": "library",
   "require": {
-    "php": ">=8.5"
+    "php": ">=8.2"
   },
   "autoload": {
     "psr-4": {
