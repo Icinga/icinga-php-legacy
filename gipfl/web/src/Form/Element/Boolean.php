@@ -17,9 +17,7 @@ class Boolean extends SelectElement
             'n'  => $this->translate('No'),
         ];
         if (! $this->isRequired()) {
-            $options = [
-                null => $this->translate('- please choose -'),
-            ] + $options;
+            $options = ['' => $this->translate('- please choose -')] + $options;
         }
 
         $this->setOptions($options);

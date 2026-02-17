@@ -116,7 +116,7 @@ class Sqlsrv extends Adapter
 
         $serverName = $this->_config['host'];
         if (isset($this->_config['port'])) {
-            $port        = (integer) $this->_config['port'];
+            $port        = (int) $this->_config['port'];
             $serverName .= ', ' . $port;
         }
 

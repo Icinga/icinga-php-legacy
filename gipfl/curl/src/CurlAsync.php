@@ -14,7 +14,6 @@ use Throwable;
 
 use function array_shift;
 use function count;
-use function curl_close;
 use function curl_error;
 use function curl_multi_add_handle;
 use function curl_multi_close;
@@ -334,9 +333,6 @@ class CurlAsync
         unset($this->pendingRequests[$ref]);
         unset($this->pendingOptions[$ref]);
         unset($this->running[$ref]);
-        if (isset($this->curl[$ref])) {
-            curl_close($this->curl[$ref]);
-        }
         unset($this->curl[$ref]);
     }
 

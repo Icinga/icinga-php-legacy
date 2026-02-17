@@ -9,7 +9,7 @@ class AdditionalContextLoggerV1 extends Logger
 {
     use AdditionalContextLoggerCommonTrait;
 
-    public function log($level, $message, array $context = [])
+    public function log($level, $message, array $context = []): void
     {
         $this->wrappedLogger->log($level, $message, $context + $this->context);
     }

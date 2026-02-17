@@ -9,7 +9,7 @@ class PrefixLoggerV1 extends Logger
 {
     use PrefixLoggerCommonTrait;
 
-    public function log($level, $message, array $context = [])
+    public function log($level, $message, array $context = []): void
     {
         $this->wrappedLogger->log($level, $this->prefix . $message, $context);
     }
