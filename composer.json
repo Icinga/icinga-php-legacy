@@ -1,6 +1,12 @@
 {
   "name": "icinga/abandoned",
   "type": "library",
+  "config": {
+    "sort-packages": true,
+    "platform": {
+      "php": "8.2"
+    }
+  },
   "require": {
     "php": ">=8.2"
   },
