@@ -1,5 +1,5 @@
 {
-  "name": "icinga/abandoned",
+  "name": "icinga/icinga-php-legacy",
   "type": "library",
   "config": {
     "sort-packages": true,
