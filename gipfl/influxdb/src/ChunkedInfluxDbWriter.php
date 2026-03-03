@@ -122,7 +122,7 @@ class ChunkedInfluxDbWriter implements LoggerAwareInterface
                 }
             }, function (RequestError $e) {
                 $this->logger->error($e->getMessage());
-            })->done();
+            });
     }
 
     public function stop()
