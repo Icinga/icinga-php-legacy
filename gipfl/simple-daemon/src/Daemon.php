@@ -88,7 +88,7 @@ class Daemon implements LoggerAwareInterface
 
         $deferred = new Deferred();
         foreach ($this->daemonTasks as $id => $task) {
-            $task->stop()->always(function () use ($id, $deferred) {
+            $task->stop()->finally(function () use ($id, $deferred) {
                 unset($this->daemonTasks[$id]);
                 if (empty($this->daemonTasks)) {
                     $this->tasksStarted = false;

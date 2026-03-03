@@ -123,13 +123,9 @@ class JsonRpcConnection implements LoggerAwareInterface
         } elseif ($result instanceof Promise) {
             $result->then(function ($result) use ($request) {
                 $this->sendResultForRequest($request, $result);
-            }, function ($error) use ($request) {
+            }, function (Throwable $error) use ($request) {
                 $response = Response::forRequest($request);
-                if ($error instanceof Throwable) {
-                    $response->setError(Error::forException($error));
-                } else {
-                    $response->setError(new Error(Error::INTERNAL_ERROR, $error));
-                }
+                $response->setError(Error::forException($error));
                 // TODO: Double-check, this used to loop
                 $this->connection->write($response->toString());
             });
