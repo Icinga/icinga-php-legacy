@@ -230,7 +230,7 @@ class RetryUnless
         if ($this->deferred !== null) {
             $deferred = $this->deferred;
             $this->deferred = null;
-            $deferred->reject($reason);
+            $deferred->reject(new RuntimeException($reason));
         }
     }
 
