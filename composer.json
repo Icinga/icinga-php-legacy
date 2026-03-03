@@ -18,6 +18,7 @@
       "gipfl\\DataType\\": "gipfl/data-type/src",
       "gipfl\\DbMigration\\": "gipfl/db-migration/src",
       "gipfl\\Format\\": "gipfl/format/src",
+      "gipfl\\IcingaCliDaemon\\": "gipfl/icinga-cli-daemon/src",
       "gipfl\\IcingaWeb2\\": "gipfl/icingaweb2/src",
       "gipfl\\InfluxDb\\": "gipfl/influxdb/src",
       "gipfl\\Json\\": "gipfl/json/src",
