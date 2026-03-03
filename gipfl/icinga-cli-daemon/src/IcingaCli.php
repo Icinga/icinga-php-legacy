@@ -76,7 +76,7 @@ class IcingaCli
         $process->on('exit', function ($exitCode, $termSignal) use ($deferred) {
             $state = new FinishedProcessState($exitCode, $termSignal);
             if ($state->succeeded()) {
-                $deferred->resolve();
+                $deferred->resolve(null);
             } else {
                 $deferred->reject(new Exception($state->getReason()));
             }
