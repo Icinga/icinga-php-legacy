@@ -6,7 +6,7 @@ use gipfl\Protocol\JsonRpc\Connection;
 use gipfl\Protocol\JsonRpc\Packet;
 use gipfl\Protocol\JsonRpc\Response;
 use gipfl\Protocol\JsonRpc\TestCase;
-use React\EventLoop\Factory;
+use React\EventLoop\Loop;
 use React\Stream\DuplexResourceStream;
 
 class ConnectionTest extends TestCase
@@ -19,7 +19,7 @@ class ConnectionTest extends TestCase
     {
         $errors = [];
         $this->collectErrorsForNotices($errors);
-        $loop = Factory::create();
+        $loop = Loop::get();
         list($sockA, $sockB) = stream_socket_pair(STREAM_PF_UNIX, STREAM_SOCK_STREAM, 0);
         $streamA = new DuplexResourceStream($sockA, $loop);
         $connection = new Connection();
@@ -32,7 +32,7 @@ class ConnectionTest extends TestCase
     {
         $errors = [];
         $this->collectErrorsForNotices($errors);
-        $loop = Factory::create();
+        $loop = Loop::get();
         list($sockA, $sockB) = stream_socket_pair(STREAM_PF_UNIX, STREAM_SOCK_STREAM, 0);
 
         $streamA = new DuplexResourceStream($sockA, $loop);
@@ -62,7 +62,7 @@ class ConnectionTest extends TestCase
     {
         $errors = [];
         $this->collectErrorsForNotices($errors);
-        $loop = Factory::create();
+        $loop = Loop::get();
         list($sockA, $sockB) = stream_socket_pair(STREAM_PF_UNIX, STREAM_SOCK_STREAM, 0);
 
         $streamA = new DuplexResourceStream($sockA, $loop);
@@ -89,7 +89,7 @@ class ConnectionTest extends TestCase
     {
         $errors = [];
         $this->collectErrorsForNotices($errors);
-        $loop = Factory::create();
+        $loop = Loop::get();
         list($sockA, $sockB) = stream_socket_pair(STREAM_PF_UNIX, STREAM_SOCK_STREAM, 0);
 
         $streamA = new DuplexResourceStream($sockA, $loop);
