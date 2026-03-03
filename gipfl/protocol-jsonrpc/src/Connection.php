@@ -13,6 +13,7 @@ use React\Promise\Promise;
 use React\Stream\DuplexStreamInterface;
 use React\Stream\Util;
 use RuntimeException;
+use Throwable;
 
 use function call_user_func_array;
 use function is_object;
@@ -127,13 +128,9 @@ class Connection implements LoggerAwareInterface
         } elseif ($result instanceof Promise) {
             $result->then(function ($result) use ($request) {
                 $this->sendResultForRequest($request, $result);
-            })->catch(function ($error) use ($request) {
+            })->catch(function (Throwable $error) use ($request) {
                 $response = Response::forRequest($request);
-                if ($error instanceof Exception) {
-                    $response->setError(Error::forException($error));
-                } else {
-                    $response->setError(new Error(Error::INTERNAL_ERROR, $error));
-                }
+                $response->setError(Error::forException($error));
                 // TODO: Double-check, this used to loop
                 $this->connection->write($response->toString());
             });
