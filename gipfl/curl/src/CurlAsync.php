@@ -158,6 +158,9 @@ class CurlAsync
         $running = $this->running; // Hint: intentionally cloned
         foreach ($running as $resourceNum => $deferred) {
             $this->freeByResourceReference($resourceNum);
+            if (! $reasonOrError instanceof Throwable) {
+                $reasonOrError = new RuntimeException($reasonOrError);
+            }
             $deferred->reject($reasonOrError);
         }
         if (! empty($this->running)) {
@@ -173,6 +176,9 @@ class CurlAsync
         foreach ($this->pending as $pending) {
             list($resourceNum, $deferred) = $pending;
             $this->freeByResourceReference($resourceNum);
+            if (! $reasonOrError instanceof Throwable) {
+                $reasonOrError = new RuntimeException($reasonOrError);
+            }
             $deferred->reject($reasonOrError);
         }
 
