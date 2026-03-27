@@ -8,13 +8,13 @@ trait TranslationHelper
     private static $translator;
 
     /**
-     * @param $string
-     * @param string|null $context
+     * @param string $message
+     * @param ?string $context
      * @return string
      */
-    public function translate($string, $context = null)
+    public function translate(string $message, ?string $context = null): string
     {
-        return self::getTranslator()->translate($string);
+        return self::getTranslator()->translate($message);
     }
 
     public static function getTranslator()
