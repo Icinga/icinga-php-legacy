@@ -1,5 +1,5 @@
 {
-  "name": "icinga/icinga-php-legacy",
+  "name": "icinga/icinga-php-legacy-dummy",
   "type": "library",
   "config": {
     "sort-packages": true,
