@@ -46,8 +46,13 @@ class UnixSocketInspection
 
     protected static function getRemotePidFromSocket($socket)
     {
-        // SO_PEERCRED = 17
-        $remotePid = socket_get_option($socket, SOL_SOCKET, 17);
+        // check if process runs in a docker container
+        if (is_file("/.dockerenv")) {
+            $remotePid = 1;
+        } else {
+            // SO_PEERCRED = 17
+            $remotePid = socket_get_option($socket, SOL_SOCKET, 17);
+        }
         if (! is_int($remotePid) || ! $remotePid > 0) {
             throw new RuntimeException("Remote PID expected, got " . var_export($remotePid));
         }
